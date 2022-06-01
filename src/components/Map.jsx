@@ -1,14 +1,21 @@
 import React from 'react'
-import { MapContainer } from 'react-leaflet/MapContainer'
-import { TileLayer } from 'react-leaflet/TileLayer'
+import { Marker, MapContainer, TileLayer } from 'react-leaflet'
 
-const Map = () => {
+const Map = ( { ip } ) => {
+
+    const lat = ip.location?.lat
+    const lng = ip.location?.lng
+    console.log(lat)
+
     return (
-        <MapContainer center={[51.505, -0.09]} zoom={13} >
+        <MapContainer center={[lat, lng]} zoom={13} >
         <TileLayer 
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         />
+        <Marker position={[lat, lng]}>
+
+        </Marker>
         </MapContainer>
     )
 }
